@@ -50,21 +50,23 @@ outputs = model.generate(**inputs)
 ## Implementation Efficiency
 Since I am not really good at writing efficient implementations, and efficiency is not the core topic of the paper, the current implementation is slow:
 
-(1) No batch inputs
+* No batch inputs
 
-(2) No vllm support
+* No vllm support
 
-(3) Slow Inference due to the for loop in the implementation
+* Slow Inference due to 
+  * 'for' loop in the implementation
+  * No support to advanced operations such as FlashAttention, SdpaAttention.
 
-(4) [Minor] A bit high memory cost.
+* [Minor] A bit high memory cost.
 
 ## When should I use PINE?
 
 As the discussion in the paper, PINE is useful when 
 
-(1) The base model is capable, since position bias is not always a bad phenomenon when the task is too hard for models.
+* The base model is capable, since position bias is not always a bad phenomenon when the task is too hard for models.
 
-(2) The task has a position bias (which is the meaning of this paper!)
+* The task has a position bias (which is the meaning of this paper!)
 
 ## Reproducing results in the paper
 
