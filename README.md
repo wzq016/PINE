@@ -92,4 +92,4 @@ If you find the repo and paper helpful for you, please cite our paper with the f
 (Will Update when the paper is annouced by Arxiv.)
 
 ## Misc
-If you have any suggestions, find any mistakes, or want futhur discussion on the paper or the repo, feel free to utilize the issues, PR or directly contact XY@illinois.edu, where X=ziqiw, Y=9
+If you have any suggestions, find any mistakes, or want further discussion on the paper or the repo, feel free to utilize the issues, PR, or directly contact XY@illinois.edu, where X=ziqiw, Y=9
