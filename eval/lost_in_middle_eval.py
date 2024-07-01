@@ -14,8 +14,6 @@ import string
 from typing import List
 import regex
 
-from vllm import LLM, SamplingParams
-
 # The login function is borrowed from RewardBench
 # get token from HF_TOKEN env variable, but if it doesn't exist pass none
 HF_TOKEN = os.getenv("HF_TOKEN", None)
@@ -105,6 +103,7 @@ def main():
     
     if 'Llama-3' in model_name:
         if args.mode == 'origin':
+            from vllm import LLM, SamplingParams
             num_gpus = len(args.gpu.split(','))
             model = LLM(model_name, trust_remote_code=False, tensor_parallel_size=num_gpus, max_model_len=6144)
             stop_token_ids = [128009]
@@ -126,6 +125,7 @@ def main():
         generation_split = '<|eot_id|><|start_header_id|>assistant<|end_header_id|>'
     elif 'Qwen' in model_name:
         if args.mode == 'origin':
+            from vllm import LLM, SamplingParams
             num_gpus = len(args.gpu.split(','))
             model = LLM(model_name, trust_remote_code=False, tensor_parallel_size=num_gpus, max_model_len=6144)
             stop_token_ids = []

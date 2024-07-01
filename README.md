@@ -9,7 +9,7 @@ transformers==4.40.0
 
 torch=2.3
 
-[RewardBench](https://github.com/allenai/reward-bench) (Only if you want to run RewardBench)
+[RewardBench==0.1.1](https://github.com/allenai/reward-bench) (Only if you want to run RewardBench, the code is only tested on v0.1.1)
 
 ## Usage
 First, use ```pip install -e .``` to install this repo as a python package.
