@@ -1,8 +1,10 @@
 # Eliminating Position Bias of Language Models: A Mechanistic Approach
 
-This is the official repo of the paper "Eliminating Position Bias of Language Models: A Mechanistic Approach".
+This is the official repo of the paper "[Eliminating Position Bias of Language Models: A Mechanistic Approach](https://arxiv.org/abs/2407.01100)".
 
 The paper proposes a novel method (PINE) to eliminate the position bias in LLMs from the angle of transformers' computation flows.
+
+![image](./method.png)
 
 ## Requirements
 transformers==4.40.0
@@ -87,9 +89,16 @@ Unlike RewardBench that only have 2 options, the lost-in-the-middle tasks have 1
 If you find the repo and paper helpful for you, please cite our paper with the following format:
 
 ```
-
+@misc{wang2024eliminatingpositionbiaslanguage,
+      title={Eliminating Position Bias of Language Models: A Mechanistic Approach}, 
+      author={Ziqi Wang and Hanlin Zhang and Xiner Li and Kuan-Hao Huang and Chi Han and Shuiwang Ji and Sham M. Kakade and Hao Peng and Heng Ji},
+      year={2024},
+      eprint={2407.01100},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2407.01100}, 
+}
 ```
-(Will Update when the paper is annouced by Arxiv.)
 
 ## Misc
 If you have any suggestions, find any mistakes, or want further discussion on the paper or the repo, feel free to utilize the issues, PR, or directly contact XY@illinois.edu, where X=ziqiw, Y=9
