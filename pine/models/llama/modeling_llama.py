@@ -159,7 +159,7 @@ class LlamaAttentionWithPS(nn.Module):
         if past_key_value.get_seq_length(self.layer_idx) == 0:
             is_forward_pass = True
             if num_docs == 2:
-                position_shift = torch.zeros([bs, n_heads, num_docs, num_docs], dtype=torch.long).to(query_states.device)
+                position_shift = torch.zeros([bs, n_heads, num_docs, num_docs], dtype=torch.long, device=query_states.device)
                 position_shift[:, :, 0, 1] = doc_len[0]
                 position_shift[:, :, 1, 0] = doc_len[1]
             else:
@@ -187,7 +187,7 @@ class LlamaAttentionWithPS(nn.Module):
                 attn_weights_doc2doc = attn_weights_doc2doc.sum(dim=-2) # [bs, heads, num_docs, num_docs]
 
                 # Sorting
-                diag_mask = torch.ones([num_docs], dtype=torch.long).to(attn_weights_doc2doc.device)
+                diag_mask = torch.ones([num_docs], dtype=torch.long, device=attn_weights_doc2doc.device)
                 diag_mask = torch.diag(diag_mask, diagonal=0)[None, None, :, :].expand(1, 1, num_docs, num_docs)
                 attn_weights_doc2doc = attn_weights_doc2doc.masked_fill(diag_mask == 1, torch.finfo(attn_weights_doc2doc.dtype).max)
                 attn_weights_doc2doc_sort = torch.argsort(attn_weights_doc2doc, dim=-1, stable=True, descending=True) # [bs, heads, num_docs, num_docs]
@@ -222,7 +222,7 @@ class LlamaAttentionWithPS(nn.Module):
                 
                 doc_attn_weights = torch.matmul(doc_q, doc_k.transpose(2, 3)) / math.sqrt(self.head_dim)
                 doc_mask_ = doc_position[:, :, doc_st[doc_id]: doc_ed[doc_id]].unsqueeze(-1) < doc_position.unsqueeze(-2)
-                _doc_mask = torch.zeros(doc_mask_.shape, dtype=doc_attn_weights.dtype).to(doc_attn_weights.device)
+                _doc_mask = torch.zeros(doc_mask_.shape, dtype=doc_attn_weights.dtype, device=doc_attn_weights.device)
                 _doc_mask = _doc_mask.masked_fill(doc_mask_, torch.finfo(_doc_mask.dtype).min)
                 doc_attn_weights += _doc_mask
                 doc_attn_weights = nn.functional.softmax(doc_attn_weights, dim=-1, dtype=torch.float32).to(doc_q.dtype)
