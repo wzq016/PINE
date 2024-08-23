@@ -33,7 +33,8 @@ model.generation_config.pad_token_id = 128004 # For llama 3
 
 # Suppose [X1 | X2 | X3 | X4 | X5] is the input string
 # Xi is the substring, and we want X2, X3, X4 to be treated equally w/o position bias,
-# For example, X1 is the system prompt for the LM-as-a-judge task, X2, X3, X4 are three options, X5 is the <eos> token.
+# For example, X1 is the system prompt for the LM-as-a-judge task, X2, X3, X4 are three options,
+# X5 is the <eos> token.
 # Then we reformat the input to be the following:
 input_string = [
     X1,
@@ -80,7 +81,7 @@ Remember to change gpu and ckpt config in the bash files before running.
 We use and process the data provided [here](https://github.com/nelson-liu/lost-in-the-middle), and the processed data is located in ```./eval_data```
 
 To test on the lost-in-the-middle task:
-```bash scripts/rewardbech_sxs.sh```
+```bash scripts/lost_in_the_middle.sh```
 Remember to change gpu, ckpt config and evaluation files in the bash files before running.
 
 Unlike RewardBench that only have 2 options, the lost-in-the-middle tasks have 10 or 20 options, therefore it is harder for models. We suggest using capable models when running this experiment, otherwise you will observe a performance drop as the above section and the paper suggest.
